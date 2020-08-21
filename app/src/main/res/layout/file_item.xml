@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.sudhindra.delta_onsites_task_4.models.FileItem" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="fileItem"
+            type="com.sudhindra.delta_onsites_task_4.models.FileItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/expandBt"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="8dp"
+            android:background="?attr/actionBarItemBackground"
+            android:visibility="@{fileItem.file.directory ? View.VISIBLE : View.INVISIBLE}"
+            app:imageResource="@{fileItem.expanded ? FileItem.DOWN_ARROW : FileItem.RIGHT_ARROW}"
+            app:layout_constraintBottom_toBottomOf="@+id/fileCard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/fileCard"
+            app:tint="@color/colorPrimary"
+            tools:srcCompat="@drawable/right_arrow" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/fileCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="8dp"
+            android:foreground="?attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/expandBt"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="2dp">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    app:imageResource="@{fileItem.file.directory ? FileItem.FOLDER_ICON : FileItem.FILE_ICON}"
+                    app:tint="@android:color/white"
+                    tools:srcCompat="@drawable/folder_icon" />
+
+                <TextView
+                    android:id="@+id/fileNameTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@{fileItem.file.name}"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    tools:text="File Name" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/emptyFolderTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="(EmptyFolder)"
+            android:textSize="16sp"
+            android:visibility="@{fileItem.expanded ? fileItem.showEmptyFolder? View.VISIBLE:View.GONE :View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/fileCard"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/fileCard"
+            app:layout_constraintTop_toBottomOf="@+id/fileCard"
+            app:layout_constraintVertical_bias="0.0"
+            tools:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/subFiles"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:visibility="@{fileItem.expanded? View.VISIBLE : View.GONE}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/expandBt"
+            app:layout_constraintTop_toBottomOf="@+id/fileCard"
+            app:layout_constraintVertical_bias="0.0"
+            tools:visibility="gone" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
