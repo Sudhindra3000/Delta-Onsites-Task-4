@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">File Viewer</string>
+    <string-array name="folderOptions">
+        <item>Rename Folder</item>
+        <item>Delete Folder</item>
+    </string-array>
+    <string-array name="fileOption">
+        <item>Rename File</item>
+        <item>Delete File</item>
+    </string-array>
 </resources>
