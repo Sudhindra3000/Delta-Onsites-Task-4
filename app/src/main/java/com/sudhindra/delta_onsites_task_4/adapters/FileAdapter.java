@@ -77,7 +77,7 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileItemViewHo
                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context);
 
                 if (fileItem.getFile().isDirectory()) {
-                    builder.setTitle("Folder Option")
+                    builder.setTitle("Folder Options")
                             .setItems(R.array.folderOptions, (dialogInterface, i) -> {
                                 switch (i) {
                                     case 0:
@@ -95,7 +95,7 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileItemViewHo
                             })
                             .show();
                 } else {
-                    builder.setTitle("File Option")
+                    builder.setTitle("File Options")
                             .setItems(R.array.fileOption, (dialogInterface, i) -> {
                                 switch (i) {
                                     case 0:
