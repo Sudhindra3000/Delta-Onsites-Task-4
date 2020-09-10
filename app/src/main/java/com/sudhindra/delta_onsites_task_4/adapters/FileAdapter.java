@@ -102,12 +102,7 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileItemViewHo
                                         showRenameFileDialog();
                                         return;
                                     case 1:
-                                        try {
-                                            deleteFile();
-                                        } catch (IOException e) {
-                                            e.printStackTrace();
-                                            Toast.makeText(context, "Failed to Delete File", Toast.LENGTH_SHORT).show();
-                                        }
+                                        deleteFile();
                                         return;
                                 }
                             })
@@ -154,7 +149,7 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileItemViewHo
             context.startActivity(Intent.createChooser(intent, "Open File with..."));
         }
 
-        public void deleteFile() throws IOException {
+        public void deleteFile() {
             FileItem fileItem = fileItems.get(getAdapterPosition());
             fileItem.getFile().delete();
 //            FileUtils.forceDelete(fileItem.getFile());

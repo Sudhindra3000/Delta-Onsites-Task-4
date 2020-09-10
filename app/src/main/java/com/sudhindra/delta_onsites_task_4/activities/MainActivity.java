@@ -1,16 +1,16 @@
 package com.sudhindra.delta_onsites_task_4.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.SimpleItemAnimator;
-
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import com.sudhindra.delta_onsites_task_4.adapters.FileAdapter;
 import com.sudhindra.delta_onsites_task_4.databinding.ActivityMainBinding;
@@ -51,11 +51,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == READ_EXTERNAL_STORAGE_REQUEST) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        if (requestCode == READ_EXTERNAL_STORAGE_REQUEST)
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                 getFiles();
-            }
-        }
     }
 
     private void getFiles() {
@@ -64,14 +62,12 @@ public class MainActivity extends AppCompatActivity {
         if (files != null) {
             Arrays.sort(files);
             fileItems = new ArrayList<>();
-            for (File file : files) {
+            for (File file : files)
                 fileItems.add(new FileItem(file));
-            }
 
             buildRecyclerView();
-        } else {
-            Toast.makeText(this, "Failed to get Files", Toast.LENGTH_SHORT).show();
-        }
+        } else Toast.makeText(this, "Failed to get Files", Toast.LENGTH_SHORT).show();
+
     }
 
     private void buildRecyclerView() {
